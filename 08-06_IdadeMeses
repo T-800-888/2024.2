@@ -1,0 +1,5 @@
+#Calcular sua idade em meses
+
+idade=int(input("Digite a sua idade em anos para obtê-la em meses: "))
+meses=idade*12
+print("\nSua idade em meses é de",meses)
