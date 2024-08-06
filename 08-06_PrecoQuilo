@@ -1,0 +1,6 @@
+#Calcular preço de venda para produto por quilo
+
+preco=float(input("Digite o preço do quilo do produto: "))
+quilo=float(input("Digite o peso da compra em quilos: "))
+valor=preco*quilo
+print("O valor do produto por quilo é de R$",valor)
