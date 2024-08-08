@@ -260,7 +260,8 @@ else:
 
 print("\nO maior número é o", maior)
 
-ALTERAR O 15!!!!!
+
+
 #15.Escreva um algoritmo que leia três números inteiros e mostre-os em ordem decrescente.
 
 n1 = float(input("Escreva um número: "))
@@ -271,11 +272,11 @@ if n1 >= n2 and n1 >= n3 and n2 >= n3:
     print("A ordem decrescente é ", n1, n2, n3)
 elif n1 >= n2 and n1 >=n3 and n3 >= n2:
     print("A ordem decrescente é ", n1, n3, n2)
-elif n2 >= n1 and b >= c and a >= c:
-    print(f'A ordem decrescente é {b} , {a} e {c}')
-elif b >= a and b >= c and c >= a:
-    print(f'A ordem decrescente é {b} , {c} e {a}')
-elif c >= a and c >= b and a >=b:
-    print(f'A ordem decrescente é {c} , {a} e {b}')
-elif c >= a and c >= b and b >= a:
-    print(f'A ordem decrescente é {c} , {b} e {a}')
+elif n2 >= n1 and n2 >= n3 and n1 >= n3:
+    print("A ordem decrescente é ", n2, n1, n3)
+elif n2 >= n1 and n2 >= n3 and n3 >= n1:
+    print("A ordem decrescente é ", n2, n3, n1)
+elif n3 >= n1 and n3 >= n2 and n1 >= n2:
+    print("A ordem decrescente é ", n3, n1, n2)
+elif n3 >= n1 and n3 >= n2 and n2 >= n1:
+    print("A ordem decrescente é ", n3, n2, n1)
