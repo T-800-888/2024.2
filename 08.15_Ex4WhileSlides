@@ -1,0 +1,15 @@
+#4) Escreva um programa que recebe 10 números do teclado e exibe a quantidade de números pares e ímpares
+
+pares = 0
+impares = 0
+contador = 0
+
+while contador < 10:
+    num = int(input("Digite um dos dez números: "))
+    if num % 2 == 0:
+        pares += 1
+    else:
+        impares += 1
+    contador += 1
+
+print("Dentre os números digitados há", pares, "números pares e", impares, "números ímpares.")
