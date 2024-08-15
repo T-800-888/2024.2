@@ -1,0 +1,16 @@
+#2) Implemente um programa em Python para ler do teclado números. Caso o usuário forneça um
+# número igual a -1, o programa deve fornecer a média dos números e encerrar
+
+soma = 0
+contador = 0
+while True:
+    num = int(input("Digite números inteiros para obter sua média, encerrando o programa ao digitar [-1]: "))
+    if num == -1:
+        break
+    soma = soma + num
+    contador = contador + 1
+media = soma/contador
+print("\nA quantidade de números digitados, descontando o [-1] é ", contador)
+print("A soma é ", soma)
+print("A média é ", media)
+print("\n   ***Programa encerrado***    ")
