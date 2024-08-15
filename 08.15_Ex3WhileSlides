@@ -1,0 +1,6 @@
+#3) Implemente um programa em Python para imprimir na tela o somatório dos N primeiros
+#números inteiros a partir do 1. Sendo N lido do teclado.
+
+num = int(input("Digite um número para obter a sua somatória: "))
+somatorio = num * (num + 1) // 2
+print(somatorio)
