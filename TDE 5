@@ -1,0 +1,226 @@
+# 1. Construa a tabela de multiplicação de 1 a 10. (Ex: 1x1 = 1, 1x2=2, 10x10 =100)
+
+num = int(input("Digite um número inteiro para obter a sua tabuada: "))
+mult = 0
+
+for mult in range(1,11):
+    resultado = mult * num
+    mult += 1
+    print(num, "x", mult - 1, "=", resultado)
+
+
+
+# 2. Construa a tabela de multiplicação de 1 a 10 utilizando apenas um laço de repetição.
+# Mesmo que exercício 1
+
+num = int(input("Digite um número inteiro para obter a sua tabuada: "))
+mult = 0
+
+for mult in range(1,11):
+    resultado = mult * num
+    mult += 1
+    print(num, "x", mult - 1, "=", resultado)
+
+
+
+
+# 4. Leia dois valores reais do teclado, calcular e imprimir na tela:
+# 5. a) A soma destes valores b) O produto deles c) O quociente entre eles
+
+num1 = int(input("Digite o primeiro número: "))
+num2 = int(input("Digite o segundo número: "))
+
+if num1 < num2:
+    quociente = num2 / num1
+else:
+    quociente = num1 / num2
+
+print("Soma:", num1 + num2, "Produto:", num1 * num2, "Quociente:", quociente)
+
+
+
+
+# 6. Ler 4 números inteiros e calcular a soma dos que forem par.
+
+cont = 0
+par = []
+while cont != 4:
+    num = int(input("Digite um número: "))
+    if num % 2 == 0:
+        par.append(num)
+    cont += 1
+print(sum(par))
+
+
+
+
+'''7. Dizemos que um número natural é triangular se ele é produto de três números naturais consecutivos.
+Exemplo: 120 é triangular, pois 4.5.6 = 120. Dado um inteiro não-negativo n, verificar se n é
+triangular.'''
+
+a = 0
+b = 1
+c = 2
+x = 0
+
+n = int(input("\nDigite um número para saber se ele é triangular: "))
+while x < n:
+    a += 1
+    b += 1
+    c += 1
+    x = a * b * c
+if x == n:
+    print("\n", n, "é triangular, pois", a, "x", b, "x", c, "=", n)
+else:
+    print("\n", n, "não é triangular.")
+
+
+
+
+'''8. A Amplitude amostral é uma medida de dispersão, ela é calculada como a diferença entre o valor
+máximo e o valor mínimo de uma amostra. Elabore um programa que leia um vetor de 10 posições
+inteiras e então mostre o valor máximo, o valor mínimo e a amplitude amostral do conjunto
+fornecido.'''
+
+v = []
+
+for i in range(10):
+    nums = int(input("\nDigite um número inteiro: "))
+    v.append(nums)
+min = min(v)
+max = max(v)
+amplitude = max - min
+print("\nO vetor ficou:", v, "\nO valor mínimo é", min,
+      "\nO valor máximo é:", max, "\nA amplitude amostral é:", amplitude)
+
+
+
+
+
+'''9. Elabore um programa que leia um vetor de 10 posições inteiras. Depois, solicite para o usuário um
+número que ele gostaria de pesquisar neste vetor, caso o número exista no vetor, mostre em qual(is)
+posição(ões) ele foi encontrado e quantas ocorrências foram detectadas.'''
+
+v = []
+posicao = []
+
+for i in range(10):
+    nums = int(input("\nDigite um número inteiro: "))
+    v.append(nums)
+
+pesq = int(input("\nDigite um número que gostaria de buscar no vetor: "))
+cont = 0
+
+for i in range(len(v)):
+    if v[i] == pesq:
+        posicao.append(i)
+        cont += 1
+if cont > 0:
+    print("O número", pesq, "está na(s) posição(ões)", posicao, "e apareceu", cont, "vez(es).")
+else:
+    print("O número não está no vetor.")
+
+
+
+
+
+'''10. Desenvolva um programa que leia 10 números inteiros e armazene-os em um vetor chamado vLido.
+Depois, crie dois outros vetores: vPares, contendo somente os números pares de vLido, e vImpares
+contendo somente os números ímpares de vLido. Os vetores vPares e vLido não deverão conter
+zeros. Mostre então os três vetores.'''
+
+vLido = []
+vPares = []
+vImpares = []
+
+for i in range(10):
+    nums = int(input("\nDigite um número inteiro: "))
+    vLido.append(nums)
+
+for nums in vLido:
+    if nums > 0:
+        if nums % 2 == 0:
+            vPares.append(nums)
+        else:
+            vImpares.append(nums)
+print("\nvLido =", vLido, "\nvPares =", vPares, "\nvImpares =", vImpares)
+
+
+
+
+'''11. Escreva um programa que leia um vetor de números inteiros de 10 posições, aceitando apenas valores
+positivos. Modifique então o vetor de forma que, tenhamos primeiro todos os números pares, depois,
+os números ímpares. Mostre o vetor antes de depois da modificação.'''
+
+v = []
+pares = set()
+impares = set()
+
+for i in range(10):
+    nums = int(input("\nDigite um número inteiro: "))
+    if nums > 0:
+        v.append(nums)
+print("\nO vetor inicial é:", v)
+
+for nums in v:
+    if nums % 2 == 0:
+        pares.add(nums)
+    else:
+        impares.add(nums)
+
+v = [pares, impares]
+print("\nO vetor modificado é:", v)
+
+
+
+'''12. Construa um programa que sugira uma aposta de Mega-Sena ou seja, um algoritmo que gera e mostra
+um conjunto de 6 números aleatórios entre [1, 60] sem repetição. Em seguida, obtenha a aposta do
+usuário (sem repetição) e indique quantos acertos ele teve.'''
+
+import random
+aposta = []
+acertos = 0
+
+def getRandom():
+    return random.sample(range(1, 61), 6)
+
+for i in range(6):
+    nums = int(input("\nDigite um número para sua aposta: "))
+    aposta.append(nums)
+
+random = [getRandom()]
+for i in range(len(aposta)):
+    if aposta[i] == random:
+        acertos += 1
+
+print("\nA Megacena foi: ", random, "\nVocê obteve", acertos, "acertos")
+
+
+
+
+'''13. Desenvolva um programa que leia um vetor de 20 posições inteiras e o coloque em ordem crescente,
+utilizando a seguinte estratégia de ordenação:
+• selecione o elemento do vetor de 20 posições que apresenta o menor valor;
+• troque este elemento pelo primeiro;
+• repita estas operações, envolvendo agora apenas os 19 elementos restantes (trocando o de
+menor valor com a segunda posição), depois os 18 elementos (trocando o de menor valor com a
+terceira posição), depois os 17, 16 e assim por diante, até restar um único elemento, o maior
+deles.'''
+
+v = []
+for i in range(20):
+        nums = int(input("\nDigite um número inteiro: "))
+        v.append(nums)
+
+print("\nVetor original:", v)
+
+for i in range(len(v)):
+    menor = i
+    for m in range(i + 1, len(v)):
+        if v[m] < v[menor]:
+            menor = m
+    v[i], v[menor] = v[menor], v[i]
+
+print("\nVetor ordenado:", v)
+
+
