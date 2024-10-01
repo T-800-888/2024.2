@@ -1,90 +1,102 @@
+#Projeto colaborativo PUCPR. Autora: Rayssa Gaievicz Grafetti.
+#Jogo de joquempo em Python que tenha as modalidades Humano x Humano, Computador x Computador, e Humano x Computador.
+#Pede um valor ao humano e randomiza um valor para o computador.
+#Mostra o placar ao fim de cada partida e proporciona a opção de continuar jogando ou de encerrar o programa.
+
 import random
 def getRandom():
     return random.choice([1, 2, 3])
 
+def jogada():
+    return int(input("\n\nDigite a sua jogada, sendo:\n[1] Pedra;\n[2] Papel;\ne [3] Tesoura: "))
+
+def placar(player1, cont1, player2, cont2):
+    return print("\n\nO placar ficou:\n", player1, "com", cont1, "vitória(s) x", player2, "com", cont2, "vitória(s)\n\n")
+
+
 modalidade = int(input("\n\nDigite a sua modalidade de escolha sendo:\n"
                        "[1] Humano x Humano;\n[2] Humano x Computador;\ne [3] Computador x Computador: "))
-pedra = 1
-papel = 2
-tesoura = 3
+pedra, papel, tesoura = 1, 2, 3
 
-contH1 = 0
-contH2 = 0
-contC1 = 0
-contC2 = 0
+cont1, cont2 = 0, 0
 
 while modalidade == 1:
+    player1 = "Jogador R"
+    player2 = "Jogador V"
     print("\nVocê é o Jogador R!")
-    hum1 = int(input("Digite a sua jogada e espere a do adversário, sendo:\n[1] Pedra;\n[2] Papel;\ne [3] Tesoura: "))
-    print("\n" * 10)
+    hum1 = jogada()
+    print("\n" * 20)
 
     print("\nVocê é o Jogador V!")
-    hum2 = int(input("Digite a sua jogada, sendo:\n"
-                            "[1] Pedra;\n[2] Papel;\ne [3] Tesoura: "))
+    hum2 = jogada()
 
     if hum1 == hum2:
         print("\nEmpate!\n\n")
-        print("\n\nO placar ficou:\nJogador R com", contH1, "vitória(s) x Jogador V com", contH2, "vitória(s)\n\n")
-
     elif hum1 == 1 and hum2 == 3 or hum1 == 2 and hum2 == 1 or hum1 == 3 and hum2 == 2:
         print("\nO Jogador R venceu!")
-        contH1 = contH1 + 1
-        print("\n\nO placar ficou:\nJogador R com", contH1, "vitória(s) x Jogador V com", contH2, "vitória(s)\n\n")
+        cont1 = cont1 + 1
     else:
         print("\nO Jogador V venceu!")
-        contH2 = contH2 + 1
-        print("\n\nO placar ficou:\nJogador R com", contH1, "vitória(s) x Jogador V com", contH2, "vitória(s)\n\n")
+        cont2 = cont2 + 1
+
+    placar(player1, cont1, player2, cont2)
 
     parar = int(input("Digite [1] para continuar e [2] para encerrar o programa: "))
     if parar == 1:
         modalidade = 1
+
     elif parar == 2:
         print("\n\nPrograma encerrado!\n\n")
         break
 
 while modalidade == 2:
-    hum1 = int(input("\nDigite a sua jogada e espere a do adversário, sendo:\n[1] Pedra;\n[2] Papel;\ne [3] Tesoura: "))
+    player1 = "Jogador"
+    player2 = "Computador"
+
+    hum1 = jogada()
 
     comp = getRandom()
     print("\n\nO Computador randomizou:", comp)
 
     if hum1 == comp:
         print("\nEmpate!\n\n")
-        print("\n\nO placar ficou:\nJogador com", contH1, "vitória(s) x Computador com", contC1, "vitória(s)\n\n")
     elif hum1 == 1 and comp == 3 or hum1 == 2 and comp == 1 or hum1 == 3 and comp == 2:
         print("\nO Jogador venceu!")
-        contH1 = contH1 + 1
-        print("\n\nO placar ficou:\nJogador com", contH1, "vitória(s) x Computador com", contC1, "vitória(s)\n\n")
+        cont1 = cont1 + 1
     else:
-        print("\nO computador venceu!")
-        contC1 = contC1 + 1
-        print("\n\nO placar ficou:\nJogador com", contH1, "vitória(s) x Computador com", contC1, "vitória(s)\n\n")
+        print("\nO Computador venceu!")
+        cont2 = cont2 + 1
+
+    placar(player1, cont1, player2, cont2)
 
     parar = int(input("Digite [1] para continuar e [2] para encerrar o programa: "))
     if parar == 1:
         modalidade = 2
+
     elif parar == 2:
         print("\n\nPrograma encerrado!\n\n")
         break
 
 while modalidade == 3:
+    player1 = "Computador A"
+    player2 = "Computador B"
+
     comp1 = getRandom()
-    print("\nO computador A randomizou:", comp1)
+    print("\nO Computador A randomizou:", comp1)
 
     comp2 = getRandom()
-    print("\nO computador B randomizou:", comp2)
+    print("\nO Computador B randomizou:", comp2)
 
     if comp1 == comp2:
         print("\nEmpate!\n\n")
-        print("\n\nO placar ficou:\nComputador A com", contC1, "vitória(s) x Computador B com", contC2, "vitória(s)\n\n")
     elif comp1 == 1 and comp2 == 3 or comp1 == 2 and comp2 == 1 or comp1 == 3 and comp2 == 2:
         print("\nO Computador A venceu!")
-        contC1 = contC1 + 1
-        print("\n\nO placar ficou:\nComputador A com", contC1, "vitória(s) x Computador B com", contC2, "vitória(s)\n\n")
+        cont1 += 1
     else:
         print("\nO Computador B venceu!")
-        contC2 = contC2 + 1
-        print("\n\nO placar ficou:\nComputador A com", contC1, "vitória(s) x Computador B com", contC2, "vitória(s)\n\n")
+        cont2 += 1
+
+    placar(player1, cont1, player2, cont2)
 
     parar = int(input("Digite [1] para continuar e [2] para encerrar o programa: "))
     if parar == 1:
