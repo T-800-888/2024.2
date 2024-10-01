@@ -1,0 +1,42 @@
+'''Desenvolva um programa para o “Jogo da Forca”.
+Para tal, crie um vetor de strings inicializado com um conjunto de palavras-chave (por exemplo: nomes de capitais do
+Brasil, ou times de futebol ou Países da América do Sul, etc). Sorteie uma das palavras para ser o segredo e
+forneça seis vidas para o usuário acertar o segredo. A cada rodada informe o número de vidas disponíveis e a
+disposição das letras acertadas e ausentes na palavra segredo (lembre de quando brincava com este jogo em
+caderno na infância), mostre também quais as letras que já foram usadas (e não compute acerto ou erro no caso do
+usuário repetir uma letra já fornecida).'''
+import random
+
+pets = ["CACHORRO", "GATO", "LAGARTO", "PASSARINHO", "COBRA", "HAMSTER", "COELHO", "PEIXE", "TARTARUGA", "ARANHA"]
+palavra = random.choice(pets)
+vidas = 6
+letrasAusentes = []
+letrasPres = []
+letrasPresentes = set()
+
+print("\n+++ Esse Jogo da Forca tem como tema PETS! Você tem 6 vidas. +++")
+
+
+while vidas > 0:
+    palavraOculta = [letra if letra in letrasPresentes else '_' for letra in palavra]
+    print("\nLetras ausentes:", letrasAusentes, "\nVocê tem", vidas, "vidas.\nPalavra:", palavraOculta)
+    letra = input("\nDigite uma letra: ").upper()
+    if letra in letrasPres:
+        print("\nEssa letra já foi! Tente novamente!")
+    elif letra in palavra:
+        print("\nLetra presente!")
+        letrasPresentes.add(letra)
+        letrasPres.append(letra)
+        if set(palavra) == letrasPresentes:
+            print("\nParabéns, você venceu! A palavra era:", palavra)
+            break
+    else:
+        print("\nLetra ausente!")
+        if letra in letrasAusentes:
+            print("\nEssa letra já foi! Tente novamente!")
+        elif letra not in letrasAusentes:
+            vidas -= 1
+            letrasAusentes.append(letra)
+    while vidas == 0:
+        print("\nSuas vidas acabaram... ;-;\nA palavra era", palavra)
+        break
