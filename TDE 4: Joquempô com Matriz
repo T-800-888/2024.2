@@ -1,0 +1,88 @@
+import random
+
+m = [
+    ['e', 'j2', 'j1'],
+    ['j1', 'e', 'j2'],
+    ['j2', 'j1', 'e']
+]
+
+def getRandom():
+    return random.choice([1, 2, 3])
+
+def jogada():
+    return int(input(
+        "\nDigite a sua jogada, sendo:\n[1] Pedra;\n[2] Papel;\ne [3] Tesoura: ")) - 1
+
+
+def possib(cont1, cont2):
+    resultado = m[jog1][jog2]
+    if resultado == 'e':
+        print("\nEmpate!\n\n")
+    elif resultado == 'j1':
+        print(f"\nO {player1} venceu!")
+        cont1 += 1
+    else:
+        print(f"\nO {player2} venceu!")
+        cont2 += 1
+    print(f"\n\nO placar ficou:\n{player1} com {cont1} vitória(s) x {player2} com {cont2} vitória(s)\n\n")
+    return cont1, cont2
+
+modalidade = int(input("\n\nDigite a sua modalidade de escolha sendo:\n"
+                       "[1] Humano x Humano;\n[2] Humano x Computador;\ne [3] Computador x Computador: "))
+
+cont1, cont2 = 0, 0
+
+while modalidade == 1:
+    player1 = "Jogador R"
+    player2 = "Jogador V"
+
+    print(f"\n Você é o {player1}!")
+    jog1 = jogada()
+    print(("\n" * 20), f"Você é o {player2}!")
+    jog2 = jogada()
+
+    cont1, cont2 = possib(cont1, cont2)
+
+    parar = int(input("Digite [1] para continuar e [2] para encerrar o programa: "))
+    if parar == 1:
+        modalidade = 1
+    elif parar == 2:
+        print("\n\nPrograma encerrado!\n\n")
+        break
+
+while modalidade == 2:
+    player1 = "Jogador"
+    player2 = "Computador"
+
+    jog1 = jogada()
+
+    jog2 = getRandom() - 1
+    print("\n\nO Computador randomizou:", jog2 + 1)
+
+    cont1, cont2 = possib(cont1, cont2)
+
+    parar = int(input("Digite [1] para continuar e [2] para encerrar o programa: "))
+    if parar == 1:
+        modalidade = 2
+    elif parar == 2:
+        print("\n\nPrograma encerrado!\n\n")
+        break
+
+while modalidade == 3:
+    player1 = "Computador A"
+    player2 = "Computador B"
+
+    jog1 = getRandom() - 1
+    print("\nO Computador A randomizou:", jog1 + 1)
+
+    jog2 = getRandom() - 1
+    print("\nO Computador B randomizou:", jog2 + 1)
+
+    cont1, cont2 = possib(cont1, cont2)
+
+    parar = int(input("Digite [1] para continuar e [2] para encerrar o programa: "))
+    if parar == 1:
+        modalidade = 3
+    elif parar == 2:
+        print("\n\nPrograma encerrado!\n\n")
+        break
