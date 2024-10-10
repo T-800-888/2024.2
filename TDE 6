@@ -1,0 +1,334 @@
+'''1. Desenvolva um programa que leia uma matriz quadrada de números inteiros de dimensão (4×4), e
+então coloque em um outro vetor de 4 posições o maior valor encontrado na coluna da matriz cujo
+índice é o mesmo do vetor, ou seja, o maior valor da coluna zero da matriz na posição zero do vetor e
+assim por diante. Mostre então a matriz, o vetor e a média aritmética do vetor.'''
+
+m = []
+v = [0] * 4
+
+for i in range(4):
+    linha = []
+    for j in range(4):
+        valorM = int(input(f"\nDigite um valor inteiro para [{i}]x[{j}]: "))
+        linha.append(valorM)
+    m.append(linha)
+print(m)
+
+for j in range(4):
+    maior = m[0][j]
+    for i in range(1, 4):
+        if m[i][j] > maior:
+            maior = m[i][j]
+    v[j] = maior
+
+print("\nA matriz ficou: ")
+for linha in m:
+    print(linha)
+
+print("\nOs maiores valores por coluna: ")
+print(v)
+
+media = sum(v) / len(v)
+
+print("\nMédia do vetor: ", media)
+
+
+
+
+
+
+'''2. Implemente um programa que permita multiplicar uma matriz de ordem (3×3) de números inteiros
+fornecida pelo usuário por um número também fornecido pelo usuário.
+Lembrete: para multiplicar uma matriz Am×n por um escalar k, basta multiplicar cada entrada aij
+de A por k.
+Assim, a matriz resultante B será também da ordem (m×n) e bij = k * aij.
+'''
+
+mA = []
+mB = []
+
+for i in range(3):
+    linha = []
+    for j in range(3):
+        valorA = int(input(f"\nDigite um valor inteiro para [{i}]x[{j}]: "))
+        linha.append(valorA)
+    mA.append(linha)
+
+k = int(input("\nDigite o número inteiro pelo qual gostaria de multiplicar os valores na matriz: "))
+for i in range(0, 3):
+    linha = []
+    for j in range(3):
+        valorB = (mA[i][j]) * k
+        linha.append(valorB)
+    mB.append(linha)
+
+print("\nA matriz era: ")
+for linha in mA:
+    print(linha)
+
+print("\nA matriz ficou: ")
+for linha in mB:
+    print(linha)
+
+
+
+
+
+
+
+'''3. Elabore um programa que preencha uma matriz quadrada (4x4) de números inteiros, sorteados dentro
+do intervalo 100 a 999, garantindo que não haverá nenhuma repetição (os 16 números devem ser
+únicos). Encontre então o valor do menor elemento da linha em que se encontra o maior elemento da
+matriz. Mostre a matriz e os dois valores encontrados.'''
+
+import random
+def Random():
+    return random.sample(range(100, 999), 1)
+
+m = []
+
+for i in range(4):
+    linha = []
+    for j in range(4):
+        linha.append(Random())
+    m.append(linha)
+
+maiorElem = m[0][0]
+maiorPos = (0, 0)
+
+for i in range(4):
+    for j in range(4):
+        if m[i][j] > maiorElem:
+            maiorElem = m[i][j]
+            maiorPos = (i, j)
+
+
+menorElem = m[maiorPos[0]][0]
+for valor in m[maiorPos[0]]:
+    if valor < menorElem:
+        menorElem = valor
+
+
+print("\nA matriz ficou:")
+for linha in m:
+    print(linha)
+
+print("\nO maior elemento da matriz é:", maiorElem, "\nO menor elemento de sua linha é:", menorElem)
+
+
+
+
+
+
+
+'''4. Escreva um programa que preencha uma matriz quadrada de números inteiros de dimensão (5×5)
+com valores inteiros (dentro do intervalo 10 a 99). Para cada uma das figuras abaixo (elabore quatro
+versões do programa): mostre a matriz original, mostre a matriz apenas com os valores que estão na
+parte hachurada e mostre a soma destes valores:'''
+
+import random
+
+m = [[random.randint(10, 99) for _ in range(5)] for _ in range(5)]
+
+print("\nMatriz original:\n")
+for linha in m:
+    print(" ".join(f"{x:>2}" for x in linha))
+
+#a)
+indicesA = [(2, 0), (2, 1), (2, 2), (2, 3), (2, 4),
+             (0, 2), (1, 2), (3, 2), (4, 2)]
+
+hachuradaA = [[" " for _ in range(5)] for _ in range(5)]
+for i, j in indicesA:
+    hachuradaA[i][j] = m[i][j]
+
+somaA = sum(m[i][j] for i, j in indicesA)
+
+print("\n\n\nMatriz a)\n")
+for linha in hachuradaA:
+    print(" ".join(f"{x:>2}" if isinstance(x, int) else "  " for x in linha))
+print("\nSoma a) ", somaA)
+
+
+#b)
+indicesB = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4),
+             (1, 0), (1, 4),
+             (2, 0), (2, 4),
+             (3, 0), (3, 4),
+             (4, 0), (4, 1), (4, 2), (4, 3), (4, 4)]
+
+hachuradaB = [[" " for _ in range(5)] for _ in range(5)]
+for i, j in indicesB:
+    hachuradaB[i][j] = m[i][j]
+
+somaB = sum(m[i][j] for i, j in indicesB)
+
+print("\n\n\nMatriz b)\n")
+for linha in hachuradaB:
+    print(" ".join(f"{x:>2}" if isinstance(x, int) else "  " for x in linha))
+print("\nSoma b) ", somaB)
+
+
+#c)
+indicesC = [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4),
+             (0, 4), (1, 3), (3, 1), (4, 0)]
+
+hachuradaC = [[" " for _ in range(5)] for _ in range(5)]
+for i, j in indicesC:
+    hachuradaC[i][j] = m[i][j]
+
+somaC = sum(m[i][j] for i, j in indicesC)
+
+print("\n\n\nMatriz c)\n")
+for linha in hachuradaC:
+    print(" ".join(f"{x:>2}" if isinstance(x, int) else "  " for x in linha))
+print("\nSoma c) ", somaC)
+
+
+#d)
+indicesD = [(i, j) for i in range(5) for j in range(5) if (i + j) % 2 == 0]
+
+hachuradaD = [[" " for _ in range(5)] for _ in range(5)]
+for i, j in indicesD:
+    hachuradaD[i][j] = m[i][j]
+
+somaD = sum(m[i][j] for i, j in indicesD)
+
+print("\n\n\nMatriz d)\n")
+for linha in hachuradaD:
+    print(" ".join(f"{x:>2}" if isinstance(x, int) else "  " for x in linha))
+print("\nSoma d) ", somaD)
+
+
+
+
+
+
+
+'''5. Escreva um programa que popule uma matriz (15×7) de números inteiros sorteados dentro do
+intervalo 10 a 99. Modifique então a matriz de forma que, caminhando da esquerda para a direita, de
+cima para baixo, tenhamos primeiro todos os números pares, depois, os números impares. Mostre a
+matriz antes e depois da modificação.'''
+
+import random
+def Random():
+    return random.randint(10, 99)
+m = []
+
+for i in range(15):
+    linha = []
+    for j in range(7):
+        linha.append(Random())
+    m.append(linha)
+
+print("Matriz original:")
+for linha in m:
+    print(linha)
+
+pares = []
+impares = []
+
+for linha in m:
+    for num in linha:
+        if num % 2 == 0:
+            pares.append(num)
+        else:
+            impares.append(num)
+
+nova_matriz = []
+todos_numeros = pares + impares
+
+for i in range(15):
+    nova_linha = todos_numeros[i * 7:(i + 1) * 7]
+    nova_matriz.append(nova_linha)
+
+print("\nMatriz modificada:")
+for linha in nova_matriz:
+    print(linha)
+
+
+
+
+
+
+
+'''6. A distância rodoviária entre algumas capitais brasileiras está disponível na tabela abaixo. Para
+consultar a distância basta cruzar as cidades origem e destino, ou seja, a distância entre Curitiba e
+São Paulo é de 408 km.
+Construa um programa que inicialize uma matriz contendo as distâncias apresentadas na tabela acima
+e que então informe ao usuário o tempo necessário para percorrer duas cidades por ele fornecidas.'''
+
+distancias = {
+    'CURITIBA': {'CURITIBA': 0, 'FLORIANÓPOLIS': 310, 'PORTO ALEGRE': 716, 'SÃO PAULO': 408, 'RIO DE JANEIRO': 852},
+    'FLORIANÓPOLIS': {'CURITIBA': 310, 'FLORIANÓPOLIS': 0, 'PORTO ALAGRE': 470, 'SÃO PAULO': 705, 'RIO DE JANEIRO': 1144},
+    'PORTO ALEGRE': {'CURITIBA': 716, 'FLORIANÓPOLIS': 470, 'PORTO ALAGRE': 0, 'SÃO PAULO': 1119, 'RIO DE JANEIRO': 1553},
+    'SÃO PAULO': {'CURITIBA': 408, 'FLORIANÓPOLIS': 705, 'PORTO ALEGRE': 1119, 'SÃO PAULO': 0, 'RIO DE JANEIRO': 429},
+    'RIO DE JANEIRO': {'CURITIBA': 852, 'FLORIANÓPOLIS': 1144, 'PORTO ALEGRE': 1553, 'SÃO PAULO': 429, 'RIO DE JANEIRO': 0}
+}
+
+print("Cidades: \nCuritiba, Florianópolis, Porto Alegre, São Paulo, Rio de Janeiro.")
+
+cid1 = input("\nDigite a cidade inicial: ").upper()
+cid2 = input("\nDigite a cidade final: ").upper()
+veloc = float(input("\nDigite a velocidade média em km/h: "))
+
+if cid1 in distancias and cid2 in distancias[cid1]:
+    distancia = distancias[cid1][cid2]
+    tempo = distancia / veloc
+    print(f"\nPara ir de {cid1} até {cid2} em {veloc} k/h, leva {tempo:.2f} horas.")
+else:
+    print("\nCidade(s) inválida(s)!")
+
+
+
+
+
+
+
+'''7. Considerando a mesma tabela da questão anterior, desenvolva um programa que permita ao usuário
+informar várias cidades em sequência, até inserir um código finalizador. Mostre então as cidades que
+compõem o roteiro fornecido, a distância de cada percurso intermediário e a distância total do roteiro
+fornecido.'''
+
+distancias = {
+    'CURITIBA': {'CURITIBA': 0, 'FLORIANÓPOLIS': 310, 'PORTO ALEGRE': 716, 'SÃO PAULO': 408, 'RIO DE JANEIRO': 852},
+    'FLORIANÓPOLIS': {'CURITIBA': 310, 'FLORIANÓPOLIS': 0, 'PORTO ALAGRE': 470, 'SÃO PAULO': 705, 'RIO DE JANEIRO': 1144},
+    'PORTO ALEGRE': {'CURITIBA': 716, 'FLORIANÓPOLIS': 470, 'PORTO ALAGRE': 0, 'SÃO PAULO': 1119, 'RIO DE JANEIRO': 1553},
+    'SÃO PAULO': {'CURITIBA': 408, 'FLORIANÓPOLIS': 705, 'PORTO ALEGRE': 1119, 'SÃO PAULO': 0, 'RIO DE JANEIRO': 429},
+    'RIO DE JANEIRO': {'CURITIBA': 852, 'FLORIANÓPOLIS': 1144, 'PORTO ALEGRE': 1553, 'SÃO PAULO': 429, 'RIO DE JANEIRO': 0}
+}
+
+rota = []
+total = 0
+
+print("Cidades: \nCuritiba, Florianópolis, Porto Alegre, São Paulo, Rio de Janeiro.")
+while True:
+    cid = input("Digite o nome de uma cidade, ou [fim] para finalizar: ").upper()
+
+    if cid == 'FIM':
+        break
+
+    if cid in distancias:
+        rota.append(cid)
+    else:
+        print("\nCidade inválida!")
+
+if len(rota) > 1:
+    print("\nRoteiro fornecido: ", " -> ".join(rota))
+
+    for i in range(len(rota) - 1):
+        cid1 = rota[i]
+        cid2 = rota[i + 1]
+
+        if cid2 in distancias[cid1]:
+            distancia = distancias[cid1][cid2]
+            total += distancia
+            print(f"\nDe {cid1} até {cid2} = {distancia} km")
+        else:
+            print(f"Não há rota direta entre {cid1} e {cid2}.")
+
+    print(f"\nDistância total do roteiro: {total} km")
+else:
+    print("Você deve fornecer ao menos duas cidades para calcular a distância.")
+
+
