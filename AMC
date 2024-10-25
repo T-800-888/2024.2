@@ -1,0 +1,95 @@
+
+def continuar():
+      input("\n... ")
+
+
+def dicas(dicasDisp, dica):
+      if dicasDisp > 0:
+            print(f"\nGostaria de pedir uma dica à sua irmã? (s/n)")
+            inputDica = input("\n... ").lower()
+            if inputDica == 's':
+                  dicasDisp -= 1
+                  print(f"\nUma dica foi usada. Lhe restam {dicasDisp}\n")
+                  print(dica)
+            else:
+                  print("\nVocê optou por não usar uma dica.")
+
+      else:
+            print("\nSuas dicas acabaram. Sua irmã não tem mais nada a dizer além de 'Boa sorte'.")
+      return dicasDisp
+
+
+def vida(vidas):
+    if vidas == 2:
+        print("\n[■□□]\nO assassino te viu bisbilhotando pela mansão. Seu nível de suspeita aumentou.")
+    elif vidas == 1:
+        print("\n[■■□]\nO assassino te viu investigando pistas e está vindo atrás de você.")
+    elif vidas == 0:
+        print("\n[■■■]\nVocê foi pêga pelo assassino e se junta à sua irmã.\n\nFim de jogo.")
+        exit()
+    return vidas
+
+def prop(vidas, resposta): # Exemplo a ser adaptado
+      print("\nQual é a resposta?")
+      inputProp = input("\n... ").upper()
+      print("\n")
+      if inputProp == resposta:
+            if vidas == 2:
+                  print('\n[■□□]')
+            elif vidas == 1:
+                  print('\n[■■□]')
+            print(f"Resposta correta!")
+            if vidas == 3:
+                  print(f"\n[□□□]\nVocê se mantém fora de suspeita.")
+      else:
+            vidas -= 1
+            vidas = vida(vidas)
+      return vidas
+
+
+dicasDisp = 5
+vidas = 3
+dica = 'p = F' # Exemplo de dica
+resposta = 'F' # Exemplo de resposta, deve ser em maiúsculo.
+
+
+print("\nAlerta de gatilho! \nContém: Morte intencional; Consumo de droga ilícita; Canibalismo; Medo ou tensão; "
+      "Violência física e psicológica; Violência doméstica.\n\nPressione o enter para continuar.")
+continuar()
+print("\n\nEm meados de 1800, em época de Revolução Industrial, você e sua gêmea são as crianças "
+      "da poderosa família burguesa Cattons. \nA noite está fria e nublada, mas mesmo assim você está fora de casa, "
+      "em um funeral, após uma grande tragédia ter ocorrido.")
+continuar()
+print("\n\nAssim que suas lágrimas finalmente cessam, envolta nos braços de sua babá, você ouve a conversa entre seus "
+      "pais e um homem \nque você nunca havia visto.\n\n— Boa noite, Senhor e Senhora Cattons. Meus pêsames pela "
+      "morte de uma de suas filhas, mas eu vim do norte para investigar o que houve \ncom ela. Precisam saber que ela "
+      "não é a primeira porém, com sua colaboração, será a última. Digo isso, apesar de seu luto, pois tenho \nmotivos "
+      "para crer que o assassino está entre aqueles que vivem em sua mansão.\n\nVocê não ouve a resposta de seus pais.")
+continuar()
+print("\n\nAo voltar para dentro da mansão, no quarto que você dividia com sua irmã, você percebe que o ursinho que "
+      "sempre a acompanhava estava \nno chão.\np: pegar o ursinho de sua irmã.\nq: receber ajuda ao longo do jogo."
+      "\np --> q\nVocê pega o ursinho? (s/n)")
+sn = input("\n... ").lower() # O "não/n" deve ser um else (ao invés de elif) para que mesmo que o usuário não digite
+# nada, o jogo continue sem dar erro e reiniciar.
+if sn == 's':
+      print("\n\nAo pegar a pelúcia você sente um calafrio apesar da janela fechada e de seus agasalhos. Você anda "
+            "até a cama de sua irmã para deixar \na pelúcia, mas seus olhos parecem lhe pregar uma peça. Ela está ali? "
+            "Sentada, como se nada tivesse acontecido? Após esfregar seus olhos \ne beliscar seu braço, você percebe "
+            "que é real e sua irmã está tão surpresa quanto você.")
+      continuar()
+      print("\n\n— Irmã, você consegue me ver? Ah, que bom. Não sabe o quanto eu chorei, invisível. Ei, e pare de "
+            "chorar você também. Isso é bom! Você \nme vê!\n\nVocê pergunta o que houve, quem a matou? Quem seria capaz "
+            "de fazer isso com alguém tão doce quanto ela? Sempre se comportou, sempre tão \neducada... Por que?")
+      continuar()
+      print("\n\n— Ah irmã, eu gostaria de saber, mas não é o caso. De repente algo acertou minha cabeça, eu apaguei e "
+            "acordei assim, póstuma. \nO que foi que fiz? Por que mereci isso? Sempre me esforcei tanto para ser "
+            "gentil, o que houve para me odiarem a esse ponto? Não estarei \nem paz até saber.\n\nVocê então decide que"
+            " irá descobrir quem fez isso, e libertar sua irmã.")
+      continuar()
+      print("\n\nSua irmã pode te dar 5 dicas!")
+else:
+      print("\n\nVocê decide não movê-lo. Parece estranho mexer nas coisas dela agora. Ao encarar a pelúcia lá, "
+            "jogada, você é tomada pela raiva. \nO que houve, quem a matou? Quem seria capaz de fazer isso com alguém "
+            "tão doce quanto sua irmã? Sempre se comportou, sempre tão \neducada... Por que? Você não estará em paz até"
+            " descobrir.")
+
