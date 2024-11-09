@@ -1,0 +1,215 @@
+
+m = [[1, 'Coca-cola', 3.75, 5],
+     [2, 'Pepsi', 3.67, 5],
+     [3, 'Monster', 9.96, 1],
+     [4, 'Café', 1.25, 100],
+     [5, 'Redbull', 13.99, 2]]
+
+mTroco = [[100, 3],
+          [50, 3],
+          [20, 5],
+          [10, 10],
+          [5, 10],
+          [1, 20],
+          [0.50, 20],
+          [0.25, 20],
+          [0.10, 20],
+          [0.05, 20],
+          [0.01, 20]]
+for i in range(0):
+    linha = []
+    m.append(linha)
+    mTroco.append(linha)
+
+def erro():
+    if TypeError:
+        print("\nInput inválido!")
+
+def troco(pagar, bebida):
+    global mTroco
+    troco = pagar - bebida[2]
+    troco = round(troco, 2)
+    print(f"\nSeu troco é de R${troco}")
+
+    mTroco2 = [list(x) for x in mTroco]
+    #Para demonstração
+    for linha in mTroco:
+        print(linha)
+    print("\n")
+
+    for i in range(len(mTroco2)):
+        valor = mTroco2[i][0]
+        quantTroco = mTroco2[i][1]
+        cont = 0
+
+        while troco >= valor and quantTroco > 0:
+            troco -= valor
+            quantTroco -= 1
+            cont += 1
+            troco = round(troco, 2)
+
+        mTroco2[i][1] = quantTroco
+
+        if cont > 0:
+            print(f"Retorno de {cont} unidade(s) de R${valor}")
+
+    if troco > 0:
+        print("\nTroco disponível insuficiente, compra cancelada.")
+        #Para demonstração
+        for linha in mTroco:
+            print(linha)
+        print("\n")
+    else:
+
+        for i in range(len(mTroco)):
+            mTroco[i][1] = mTroco2[i][1]
+        print("\nTroco retornado, obrigado pela compra!")
+        bebida[3] -= 1
+        #Para demonstração
+        for linha in mTroco:
+            print(linha)
+        print("\n")
+
+
+while True:
+    modo = 1
+    if modo == 1:
+        print('\n\n------- MÁQUINA DE BEBIDAS -----\n')
+        for i in range(len(m)):
+            print('ID', m[i][0], ':', m[i][1], '   R$', m[i][2])
+
+        escolha = int(input("\nDigite o ID da bebida desejada: "))
+        escolhida = None
+        # Para demonstração
+        for linha in m:
+            print(linha)
+        for bebida in m:
+            if bebida[0] == escolha:
+                escolhida = bebida
+                break
+        if not escolhida:
+            if escolha == 4321:
+                modo = 2
+            else:
+                print("\nID inválido!")
+        else:
+            if escolhida[3] == 0:
+                print("\nBebida esgotada!")
+            else:
+                print(f"\nVocê escolheu {escolhida[1]}, o valor é R${escolhida[2]}")
+                pagar = float(input("\nDigite o valor a pagar, ou 0 para cancelar a compra: "))
+                if pagar == 0:
+                    print("\nCompra cancelada!")
+                elif pagar == escolhida[2]:
+                    print("\nObrigado pela compra!")
+                    escolhida[3] -= 1
+                elif pagar < escolhida[2]:
+                    print("\nValor insuficiente e retornado. Tente novamente.")
+                else:
+                    if pagar > escolhida[2]:
+                        troco(pagar, bebida)
+                # Para demonstração
+                for linha in m:
+                    print(linha)
+
+
+    if modo == 2:
+        senha = input("\nVocê está entrando como administrador. \nDigite a senha: ")
+        if senha == 'RayssaGG':
+            print("\nAcesso permitido.")
+        else:
+            print("\nAcesso negado!")
+            continue
+
+        print("\n")
+        for linha in m:
+            print(linha)
+        print("\n")
+
+        admin = input("\nDigite \n[1] para fazer uma adição;\n[2] para uma edição;\n[3] para uma remoção;\nOu [4] para sair do modo administrador: ")
+
+        if admin == '1':
+            v = []
+            addId = int(input("\nDigite um ID para a bebida: "))
+            existe = False
+            for bebida in m:
+                if bebida[0] == addId:
+                    existe = True
+                    break
+            if existe:
+                print("\nID já existente!")
+            elif addId < 0:
+                print("\nID inválido!")
+            else:
+                v.append(addId)
+                addNome = input("\nDigite o nome da bebida: ")
+                v.append(addNome)
+                addValor = float(input("\nDigite um valor para a bebida: "))
+                v.append(addValor)
+                addQuant = int(input("\nDigite a quantidade em estoque da bebida: "))
+                v.append(addQuant)
+                m.append(v)
+                m.sort(key=lambda x: x[0])
+
+        elif admin == '2':
+            editId = int(input("\nDigite o ID da bebida que gostaria de editar: "))
+            escolhida = None
+            for bebida in m:
+                if bebida[0] == editId:
+                    escolhida = bebida
+                    break
+            if not escolhida:
+                print("\nID não encontrado!")
+            else:
+                edit = input(f"\nVocê escolheu {escolhida[1]}. O que gostaria de editar?\n[1] ID;\n[2] Nome;\n[3] Preço;\n[4] Quantidade em estoque;\n[5] Sair do modo administrador: ")
+                if edit == '1':
+                    novoId = int(input("\nDigite o novo ID: "))
+                    existe = False
+                    for bebida in m:
+                        if bebida[0] == novoId:
+                            existe = True
+                            break
+                    if existe:
+                        print("\nID já existente!")
+                        continue
+                    elif novoId < 0:
+                        print("\nID inválido!")
+                        continue
+                    else:
+                        escolhida[0] = novoId
+                        m.sort(key=lambda x: x[0])
+                elif edit == '2':
+                    novoNome = input("\nDigite o nome novo: ")
+                    bebida[1] = novoNome
+                elif edit == '3':
+                    novoPreco = float(input("\nDigite o preço novo: "))
+                    bebida[2] = novoPreco
+                elif edit == '4':
+                    novaQuant = int(input("\nDigite a quantidade em estoque nova: "))
+                    bebida[3] = novaQuant
+                print("\nBebida editada!")
+
+        elif admin == '3':
+            removeId = int(input("\nDigite o ID da bebida que gostaria de remover: "))
+            existe = False
+            escolhida = None
+            for bebida in m:
+                if bebida[0] == removeId:
+                    escolhida = bebida
+                    existe = True
+            if existe:
+                remove = input(f"\nVocê escolheu {escolhida[1]}. Tem certeza da remoção?\n[1] Sim;\n[2] Não: ")
+                if remove == '1':
+                    m.remove(escolhida)
+                    print("\nBebida removida com sucesso!")
+                else:
+                    print("\nRemoção cancelada.")
+            else:
+                print("\nID inválido!")
+        print("\nO catálogo agora é: ")
+        for linha in m:
+            print(linha)
+        print("\n")
+
+        if admin == '4':
+            continue
