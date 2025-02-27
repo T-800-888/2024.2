@@ -1,0 +1,134 @@
+#Escreva um algoritmo em Python para calcular o valor, em reais, que deve ser pago por um cliente de uma locadora de carros.
+#Sabe-se que: O valor de locação de cada carro é 100,00 reais; O cliente pode locar um único carro por vários dias.
+
+quant_carros = int(input("Sabendo que o valor de aluguel de cada carro é de R$100.00 por dia, quantos carros gostaria de alugar? "))
+dias = int(input("Por quantos dias gostaria de alugar? "))
+
+valor=(quant_carros*100) * dias
+
+print("O valor total do aluguel é: R$", valor)
+
+
+
+
+#Escreva um algoritmo em Python para calcular a idade de alguém, sabendo-se seu ano de nascimento.
+
+ano = int(input("Digite seu ano de nascimento: "))
+
+idade = 2024 - ano
+
+print("Sua idade é: ", idade)
+
+
+
+
+#Leia do teclado a temperatura em Celsius e imprima o equivalente em Fahrenheit.
+#Fórmula: (X °C × 9/5) + 32
+
+celcius = float(input("Digite a temperatura em Celcius para obter a conversão: "))
+fahr = (celcius * (9/5)) + 32
+
+print(celcius," Celcius = ",fahr," Faharenheit")
+
+
+
+
+peso = float(input("Digite o seu peso em Kg: "))
+altura = float(input("Digite sua altura em metros: "))
+
+imc = peso / (altura*altura)
+
+print("\nO seu IMC é: ", imc)
+
+
+
+
+#Crie um algoritmo que recebe quatro informações e armazena em variáveis: 
+#Nome, CPF, Telefone e Ano de Nascimento. Em seguida, imprima na tela esses valores formatados.
+nome = str(input("Digite o seu nome: "))
+cpf = str(input("Digite o seu CPF: "))
+tel = str(input("Digite seu número de telefone: "))
+nasc = str(input("Digite sua data de nascimento: "))
+
+print("Seus dados são: ","\n",nome,"\n",cpf,"\n",tel,"\n",nasc)
+
+
+
+
+#Escrever um algoritmo para calcular a média de 4 notas.
+
+n1 = float(input("Digite sua nota 1: "))
+n2 = float(input("Digite sua nota 2: "))
+n3 = float(input("Digite sua nota 3: "))
+n4 = float(input("Digite sua nota 4: "))
+
+media = (n1+n2+n3+n4)/4
+print("Sua média é de ", media)
+
+
+
+
+#Calcular sua idade em meses
+
+idade=int(input("Digite a sua idade em anos para obtê-la em meses: "))
+meses=idade*12
+print("\nSua idade em meses é de",meses)
+
+
+
+
+#Calcular preço de venda para produto por quilo
+
+preco=float(input("Digite o preço do quilo do produto: "))
+quilo=float(input("Digite o peso da compra em quilos: "))
+valor=preco*quilo
+print("O valor do produto por quilo é de R$",valor)
+
+
+
+
+#2) Implemente um programa em Python para ler do teclado números. Caso o usuário forneça um
+# número igual a -1, o programa deve fornecer a média dos números e encerrar
+
+soma = 0
+contador = 0
+while True:
+    num = int(input("Digite números inteiros para obter sua média, encerrando o programa ao digitar [-1]: "))
+    if num == -1:
+        break
+    soma = soma + num
+    contador = contador + 1
+media = soma/contador
+print("\nA quantidade de números digitados, descontando o [-1] é ", contador)
+print("A soma é ", soma)
+print("A média é ", media)
+print("\n   ***Programa encerrado***    ")
+
+
+
+
+#3) Implemente um programa em Python para imprimir na tela o somatório dos N primeiros
+#números inteiros a partir do 1. Sendo N lido do teclado.
+
+num = int(input("Digite um número para obter a sua somatória: "))
+somatorio = num * (num + 1) // 2
+print(somatorio)
+
+
+
+
+#4) Escreva um programa que recebe 10 números do teclado e exibe a quantidade de números pares e ímpares
+
+pares = 0
+impares = 0
+contador = 0
+
+while contador < 10:
+    num = int(input("Digite um dos dez números: "))
+    if num % 2 == 0:
+        pares += 1
+    else:
+        impares += 1
+    contador += 1
+
+print("Dentre os números digitados há", pares, "números pares e", impares, "números ímpares.")
